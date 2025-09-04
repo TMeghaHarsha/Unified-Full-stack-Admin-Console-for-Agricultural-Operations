@@ -1,0 +1,31 @@
+ 
+version: '3.8'
+
+services:
+  app:
+    build: .
+    command: gunicorn --bind 0.0.0.0:8000 admin_dashboard.wsgi:application
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:lab@123@db:5432/farming_db
+      - SECRET_KEY=85OktZntqgNH603N_ovu1lGtWQSfMw-9kR5KH5EXnmgyj1AZZL_3J5MV-EAU861WzZY  # Replace with a secure key
+      - DEBUG=1
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=lab@123
+      - POSTGRES_DB=farming_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
