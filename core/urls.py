@@ -4,5 +4,5 @@ from . import views
 app_name = 'core'
 
 urlpatterns = [
-    path('', views.crop_list, name='crop_list'),
+    path('crops/', views.crop_list, name='crop_list'),
 ]
