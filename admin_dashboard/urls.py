@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('crops/', include('core.urls', namespace='crop_list')),  # Assuming 'crops' is from the 'core' app
-    path('', admin.site.urls),  # Add this to handle the root URL
+    # path('', admin.site.urls),  # Add this to handle the root URL
 ]
