@@ -19,7 +19,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run migrations and collect static files
-RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
 # Expose port
