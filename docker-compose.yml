@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis
     environment:
       - DATABASE_URL=postgres://postgres:new-lab@123@db:5432/farming_db
       - SECRET_KEY=85OktZntqgNH603N_ovu1lGtWQSfMw-9kR5KH5EXnmgyj1AZZL_3J5MV-EAU861WzZY
@@ -25,6 +26,10 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
 
 volumes:
   postgres_data:
