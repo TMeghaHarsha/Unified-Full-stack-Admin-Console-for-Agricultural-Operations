@@ -1,4 +1,3 @@
- 
 # Use official Python runtime as base image
 FROM python:3.12-slim
 
@@ -18,11 +17,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files
 COPY . .
 
-# Run migrations and collect static files
+# Create staticfiles directory
+RUN mkdir -p staticfiles
+
+# Collect static files
 RUN python manage.py collectstatic --noinput
 
 # Expose port
 EXPOSE 8000
 
-# Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "admin_dashboard.wsgi:application"]
+# Run the application (handled by docker-compose command)
+CMD ["sh", "-c", "sleep infinity"]  # Placeholder, overridden by docker-compose
