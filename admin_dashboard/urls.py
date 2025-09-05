@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.views.generic import RedirectView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('crops/', include('core.urls', namespace='crop_list')),  # Assuming 'crops' is from the 'core' app
     # path('', admin.site.urls),  # Add this to handle the root URL
+    path('', RedirectView.as_view(url='/admin/', permanent=False)),  # Add this line
 ]
