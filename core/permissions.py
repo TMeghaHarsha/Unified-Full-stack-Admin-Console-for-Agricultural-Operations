@@ -8,8 +8,3 @@ class HasPermission(BasePermission):
             return False
         required_perm = f'{view.basename}_crop' if view.basename else 'view_crop'
         return request.user.role.permissions.filter(codename=required_perm).exists()
-
-# Temporary permissive class for testing
-class AllowAllPermission(BasePermission):
-    def has_permission(self, request, view):
-        return True
