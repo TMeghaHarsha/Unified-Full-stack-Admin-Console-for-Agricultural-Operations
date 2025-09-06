@@ -51,5 +51,5 @@ tzdata==2025.2
 urllib3==2.5.0
 python-dotenv==1.0.1
 djangorestframework-simplejwt
-dj-database-url  # Add this for DATABASE_URL parsing
+dj-database-url==2.1.0  # Add this for DATABASE_URL parsing
 gunicorn==21.2.0  # Add back gunicorn for running the app
