@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from dotenv import load_dotenv
 import os
 from pathlib import Path
-import dj_database_url
+from dj_database_url import config as dj_database_url_config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'admin_dashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL', 'postgres://postgres:new-lab@123@db:5432/farming_db'))
+    'default': dj_database_url_config(default='postgres://postgres:lab@123@db:5432/farming_db')
 }
 
 # Cache configuration
@@ -127,6 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = []
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

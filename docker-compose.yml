@@ -1,9 +1,7 @@
 services:
   app:
     build: .
-    command: >
-      sh -c "python manage.py migrate &&
-             gunicorn --bind 0.0.0.0:8000 admin_dashboard.wsgi:application"
+    command: gunicorn --bind 0.0.0.0:8000 admin_dashboard.wsgi:application
     volumes:
       - .:/app
     ports:
@@ -12,24 +10,31 @@ services:
       - db
       - redis
     environment:
-      - DATABASE_URL=postgres://postgres:new-lab@123@db:5432/farming_db
-      - SECRET_KEY=85OktZntqgNH603N_ovu1lGtWQSfMw-9kR5KH5EXnmgyj1AZZL_3J5MV-EAU861WzZY
       - DEBUG=1
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    command: sh -c "export HOST=0.0.0.0 && npm start"
+    environment:
+      - HOST=0.0.0.0
 
   db:
     image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=new-lab@123
+      - POSTGRES_PASSWORD=lab@123
       - POSTGRES_DB=farming_db
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+
   redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
+    image: redis:7
 
 volumes:
   postgres_data:
