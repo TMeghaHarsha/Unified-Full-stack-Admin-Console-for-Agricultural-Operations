@@ -4,10 +4,13 @@ import Layout from './components/Layout';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Crops from './components/Crops';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <BrowserRouter>
+      <ToastContainer /> {/* Add this line */}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<Layout />}>
