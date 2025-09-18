@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Farming Platform Design System - All colors, gradients, fonts, animations */
+
+@layer base {
+  :root {
+    /* Agricultural Color Palette */
+    --primary: 120 60% 35%;  /* Professional farm green */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 120 50% 45%;
+    --primary-dark: 120 70% 25%;
+    
+    /* Earth tones and natural colors */
+    --secondary: 45 20% 85%;  /* Warm beige */
+    --secondary-foreground: 120 10% 15%;
+    --accent: 200 80% 50%;  /* Sky blue for contrast */
+    --accent-foreground: 0 0% 100%;
+    
+    /* Agricultural status colors */
+    --success: 120 100% 25%;  /* Deep green for healthy crops */
+    --warning: 45 100% 50%;   /* Golden yellow for attention */
+    --destructive: 0 75% 55%; /* Muted red for issues */
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Neutral foundation */
+    --background: 0 0% 100%;
+    --foreground: 120 5% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 120 5% 15%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 120 5% 15%;
+    
+    /* Interactive elements */
+    --muted: 120 10% 95%;
+    --muted-foreground: 120 5% 45%;
+    --border: 120 15% 90%;
+    --input: 120 15% 90%;
+    --ring: 120 60% 35%;
+    
+    /* Role-based colors */
+    --super-admin: 300 60% 45%;    /* Purple for super admin */
+    --manager: 220 70% 50%;        /* Blue for managers */
+    --agronomist: 120 60% 35%;     /* Green for agronomists */
+    --support: 180 60% 45%;        /* Teal for support */
+    --business: 45 80% 50%;        /* Gold for business */
+    --analytics: 260 60% 50%;      /* Violet for analytics */
+    
+    /* Sidebar variables */
+    --sidebar-background: 120 10% 97%;
+    --sidebar-foreground: 120 10% 15%;
+    --sidebar-primary: 120 60% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 120 20% 92%;
+    --sidebar-accent-foreground: 120 10% 15%;
+    --sidebar-border: 120 15% 88%;
+    --sidebar-ring: 120 60% 35%;
+    
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark mode agricultural theme */
+    --primary: 120 50% 55%;
+    --primary-foreground: 120 10% 5%;
+    
+    --secondary: 45 15% 20%;
+    --secondary-foreground: 45 20% 85%;
+    --accent: 200 60% 45%;
+    --accent-foreground: 0 0% 100%;
+    
+    --success: 120 80% 40%;
+    --warning: 45 90% 60%;
+    --destructive: 0 65% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --background: 120 8% 8%;
+    --foreground: 120 10% 95%;
+    --card: 120 8% 10%;
+    --card-foreground: 120 10% 95%;
+    --popover: 120 8% 12%;
+    --popover-foreground: 120 10% 95%;
+    
+    --muted: 120 8% 15%;
+    --muted-foreground: 120 5% 65%;
+    --border: 120 8% 18%;
+    --input: 120 8% 18%;
+    --ring: 120 50% 55%;
+    
+    --sidebar-background: 120 10% 6%;
+    --sidebar-foreground: 120 10% 90%;
+    --sidebar-primary: 120 50% 55%;
+    --sidebar-primary-foreground: 120 10% 5%;
+    --sidebar-accent: 120 8% 12%;
+    --sidebar-accent-foreground: 120 10% 90%;
+    --sidebar-border: 120 8% 15%;
+    --sidebar-ring: 120 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Agricultural component styles */
+  .agricultural-gradient {
+    background: linear-gradient(135deg, hsl(120 60% 35%), hsl(120 50% 45%));
+  }
+  
+  .earth-gradient {
+    background: linear-gradient(135deg, hsl(45 30% 80%), hsl(120 20% 85%));
+  }
+  
+  .harvest-gradient {
+    background: linear-gradient(135deg, hsl(45 80% 60%), hsl(120 60% 40%));
+  }
+  
+  .role-badge-super-admin {
+    background: hsl(var(--super-admin));
+    color: hsl(0 0% 100%);
+  }
+  
+  .role-badge-manager {
+    background: hsl(var(--manager));
+    color: hsl(0 0% 100%);
+  }
+  
+  .role-badge-agronomist {
+    background: hsl(var(--agronomist));
+    color: hsl(0 0% 100%);
+  }
+  
+  .role-badge-support {
+    background: hsl(var(--support));
+    color: hsl(0 0% 100%);
+  }
+  
+  .role-badge-business {
+    background: hsl(var(--business));
+    color: hsl(0 0% 100%);
+  }
+  
+  .role-badge-analytics {
+    background: hsl(var(--analytics));
+    color: hsl(0 0% 100%);
+  }
+
+  /* Smooth transitions for all interactive elements */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px hsl(120 10% 0% / 0.15);
+  }
+}
