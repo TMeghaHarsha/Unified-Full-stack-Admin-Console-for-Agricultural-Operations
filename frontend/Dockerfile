@@ -13,5 +13,8 @@ COPY . .
 # Build app
 RUN npm run build
 
-# Start dev server (override in docker-compose if needed)
-CMD ["npm", "run", "start"]
+# Install serve globally
+RUN npm install -g serve
+
+# Serve the built folder
+CMD ["serve", "-s", "dist", "-l", "3000"]
