@@ -13,7 +13,7 @@ interface MetricCardProps {
   value: string;
   change: string;
   trend: 'up' | 'down';
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<unknown>;
 }
 
 function MetricCard({ title, value, change, trend, icon: Icon }: MetricCardProps) {

@@ -24,7 +24,7 @@ import { Badge } from "@/components/ui/badge";
 interface SidebarItem {
   title: string;
   url: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<unknown>;
   roles: UserRole[];
 }
 
