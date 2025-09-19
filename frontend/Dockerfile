@@ -1,20 +1,18 @@
-# Frontend Dockerfile
 FROM node:20
 
 WORKDIR /app
 
-# Install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy source
 COPY . .
 
-# Build app
+# Remove any cached favicon that might exist in build
+RUN rm -f public/favicon.ico
+
 RUN npm run build
 
 # Install serve globally
 RUN npm install -g serve
 
-# Serve the built folder
 CMD ["serve", "-s", "dist", "-l", "3000"]
