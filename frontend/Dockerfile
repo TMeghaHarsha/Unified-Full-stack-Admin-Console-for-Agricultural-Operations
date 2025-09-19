@@ -14,4 +14,4 @@ COPY . .
 RUN npm run build
 
 # Start dev server (override in docker-compose if needed)
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
