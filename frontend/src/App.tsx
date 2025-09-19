@@ -9,13 +9,13 @@ import { LoginForm } from "@/components/auth/LoginForm";
 import Index from "./pages/Index";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-import { Agronomist } from "@/components/dashboard/AgronomistDashboard";
-import { Analytics } from "@/components/dashboard/AnalyticsDashboard";
-import { Business } from "@/components/dashboard/BusinessDashboard";
-import { Development } from "@/components/dashboard/DevelopmentDashboard";
-import { Manager } from "@/components/dashboard/ManagerDashboard";
-import { SuperAdmin } from "@/components/dashboard/SuperAdminDashboard";
-import { Support } from "@/components/dashboard/SupportDashboard";
+import { AgronomistDashboard } from "@/components/dashboard/AgronomistDashboard";
+import { AnalyticsDashboard } from "@/components/dashboard/AnalyticsDashboard";
+import { BusinessDashboard } from "@/components/dashboard/BusinessDashboard";
+import { DevelopmentDashboard } from "@/components/dashboard/DevelopmentDashboard";
+import { ManagerDashboard } from "@/components/dashboard/ManagerDashboard";
+import { SuperAdminDashboard } from "@/components/dashboard/SuperAdminDashboard";
+import { SupportDashboard } from "@/components/dashboard/SupportDashboard";
 
 const queryClient = new QueryClient();
 
@@ -42,43 +42,43 @@ const App = () => (
             {/* Dashboard Routes */}
             <Route path="/agronomist" element={
               <ProtectedRoute>
-                <Agronomist />
+                <AgronomistDashboard />
               </ProtectedRoute>
             } />
 
             <Route path="/analytics" element={
               <ProtectedRoute>
-                <Analytics />
+                <AnalyticsDashboard />
               </ProtectedRoute>
             } />
 
             <Route path="/business" element={
               <ProtectedRoute>
-                <Business />
+                <BusinessDashboard />
               </ProtectedRoute>
             } />
 
             <Route path="/development" element={
               <ProtectedRoute>
-                <Development />
+                <DevelopmentDashboard />
               </ProtectedRoute>
             } />
 
             <Route path="/manager" element={
               <ProtectedRoute>
-                <Manager />
+                <ManagerDashboard />
               </ProtectedRoute>
             } />
 
             <Route path="/superadmin" element={
               <ProtectedRoute>
-                <SuperAdmin />
+                <SuperAdminDashboard />
               </ProtectedRoute>
             } />
 
             <Route path="/support" element={
               <ProtectedRoute>
-                <Support />
+                <SupportDashboard />
               </ProtectedRoute>
             } />
 
