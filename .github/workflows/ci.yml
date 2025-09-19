@@ -1,14 +1,80 @@
- 
-name: CI 
-on: [push] 
-jobs: 
-  build: 
-    runs-on: ubuntu-latest 
-    steps: 
-    - uses: actions/checkout@v2 
-    - name: Set up Python 
-      uses: actions/setup-python@v2 
-      with: 
-        python-version: '3.12' 
-    - run: pip install -r requirements.txt 
-    - run: python manage.py test 
+name: Fullstack CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env: 
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: Admin_Dashboard
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+
+    strategy:
+      matrix:
+        node-version: [20]
+        python-version: [3.11]
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    # ---- Backend ----
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install backend dependencies
+      run: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run backend tests
+      env:
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/Admin_Dashboard
+        REDIS_URL: redis://localhost:6379
+      run: |
+        cd backend
+        python manage.py check
+
+    # ---- Frontend ----
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install frontend dependencies
+      run: |
+        cd frontend
+        npm install
+
+    - name: Lint frontend
+      run: |
+        cd frontend
+        npx eslint .
+
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
