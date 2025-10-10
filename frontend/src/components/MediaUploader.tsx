@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const MediaUploader = () => {
+interface MediaUploaderProps {
+  cropId?: number;
+}
+
+const MediaUploader = ({ cropId }: MediaUploaderProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadStatus, setUploadStatus] = useState<string>('');
 
@@ -16,9 +20,10 @@ const MediaUploader = () => {
     if (!selectedFile) return;
     const formData = new FormData();
     formData.append('file', selectedFile);
+    if (cropId) formData.append('crop', cropId.toString());
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/upload`, formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/media/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setUploadStatus('Upload successful');

@@ -12,7 +12,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from dotenv import load_dotenv
 import os
 from pathlib import Path
-from dj_database_url import config as dj_database_url_config
+from dj_database_url import config as db_url_config
+
+# Database configuration
+DATABASE_URL = os.environ.get('DATABASE_URL', 'postgres://postgres:lab@123@localhost:5432/farming_db')
+DATABASES = {
+    'default': db_url_config(default=DATABASE_URL)
+}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'rest_framework',
-    'django_redis'
+    'django_redis',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -76,7 +83,14 @@ WSGI_APPLICATION = 'admin_dashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 DATABASES = {
-    'default': dj_database_url_config(default='postgres://postgres:lab@123@db:5432/farming_db')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'farming_db',
+        'USER': 'postgres',
+        'PASSWORD': 'lab@123',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 # Cache configuration

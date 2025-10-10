@@ -11,7 +11,7 @@ services:
       - redis
     environment:
       - DEBUG=1
-
+      - DATABASE_URL=postgres://postgres:lab@123@db:5432/farming_db
   frontend:
     build:
       context: ./frontend

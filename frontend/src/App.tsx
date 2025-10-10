@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <BrowserRouter>
-      <ToastContainer /> {/* Add this line */}
+      <ToastContainer />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<Layout />}>
